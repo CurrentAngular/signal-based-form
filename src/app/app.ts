@@ -4,8 +4,10 @@ import { Component, signal } from '@angular/core';
   selector: 'sbf-root',
   imports: [],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App {
-  protected readonly title = signal('signal-based-form');
+  onSubmit(event: unknown): void {
+    console.log(event);
+  }
 }
