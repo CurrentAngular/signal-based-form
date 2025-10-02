@@ -1,6 +1,20 @@
 import { Component, signal } from '@angular/core';
 import { User } from './user.interface';
-import { Control, email, form, minLength, required } from '@angular/forms/signals';
+import {
+  apply,
+  Control,
+  email,
+  form,
+  minLength,
+  required,
+  Schema,
+  schema,
+} from '@angular/forms/signals';
+
+const nameSchema: Schema<string> = schema((path) => {
+  required(path, { message: 'This field is required' });
+  minLength(path, 3, { message: 'Minimal length is 3 symbols' });
+});
 
 @Component({
   selector: 'sbf-root',
@@ -17,11 +31,8 @@ export class App {
   });
 
   protected readonly form = form(this.user, (path) => {
-    required(path.firstName, { message: 'This field is required' });
-    minLength(path.firstName, 3, { message: 'Minimal length is 3 symbols' });
-
-    required(path.lastName, { message: 'This field is required' });
-    minLength(path.lastName, 3, { message: 'Minimal length is 3 symbols' });
+    apply(path.firstName, nameSchema);
+    apply(path.lastName, nameSchema);
 
     required(path.email, { message: 'This field is required' });
     email(path.email, { message: 'This is invalid email' });
