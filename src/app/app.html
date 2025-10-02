@@ -1,10 +1,10 @@
-<h3>signal based form</h3>
+<h3 class="title">signal based form</h3>
 <form (submit)="onSubmit($event)" class="form">
-  <input type="text" placeholder="Enter your first name" class="form-input" />
-  <input type="text" placeholder="Enter your second name" class="form-input" />
-  <input type="email" placeholder="Enter your email" class="form-input" />
+  <input [control]="form.firstName" type="text" placeholder="Enter your first name" class="form-input" />
+  <input [control]="form.lastName" type="text" placeholder="Enter your second name" class="form-input" />
+  <input [control]="form.email" type="email" placeholder="Enter your email" class="form-input" />
   <label for="notify" class="form-notify">Notify by email:
-    <input id="notify" type="checkbox" />
+    <input [control]="form.notify" id="notify" type="checkbox" />
   </label>
   <button type="submit" class="form-button">save</button>
 </form>

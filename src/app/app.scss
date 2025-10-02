@@ -1,3 +1,16 @@
+:host {
+  display: block;
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+.title {
+  text-align: center;
+  text-transform: capitalize;
+  color: cadetblue;
+  font-size: 24px;
+}
+
 .form {
   display: flex;
   flex-direction: column;
