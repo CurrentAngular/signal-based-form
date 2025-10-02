@@ -17,12 +17,23 @@
   max-width: 800px;
   margin: auto;
 
-  &-input {
-    padding: 6px 12px;
+  &-field:not(:last-child) {
+    margin-bottom: 12px;
+  }
 
-    &:not(:last-child) {
-      margin-bottom: 12px;
-    }
+  &-input {
+    width: 100%;
+    padding: 6px 12px;
+    box-sizing: border-box;
+    margin-bottom: 6px;
+  }
+
+  &-error {
+    display: flex;
+    color: var(--color-red);
+    font-size: 12px;
+    font-style: italic;
+    padding-left: 12px;
   }
 
   &-notify {
