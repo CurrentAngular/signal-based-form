@@ -37,7 +37,13 @@ export class App {
     apply(form.firstName, namesSchema);
     apply(form.lastName, namesSchema);
 
-    required(form.email, { message: 'This field is required!' }); // задаем в объекте свое кастомное сообщение ошибки
+    // Валидатор по условию
+    // when - хранит в себе функцию, которая принимает как аргумент контекст, у которого есть функция valueOf, которая возвращает значение указанного контрола
+    // данный валидатор применится к form.email тольуо тогда, когда значение контрола form.notify будет равно true
+    required(form.email, {
+      when: (ctx) => ctx.valueOf(form.notify) === true,
+      message: 'This field is required!',
+    });
     email(form.email, { message: 'This field must be email pattern' }); // задаем в объекте свое кастомное сообщение ошибки
   });
 
