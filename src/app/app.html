@@ -2,14 +2,26 @@
 <form class="form" (submit)="onSubmit($event)">
   <div class="form-field">
     <input [control]="userForm.firstName" type="text" placeholder="Enter your first name" class="form-input" />
+    <!-- В сигнале errors - содержатся все ошибки, которые доступны для данного контрола на текущий момент -->
+    @for (error of userForm.firstName().errors(); track error) {
+    <small class="form-error">{{ error.message }}</small>
+    }
   </div>
 
   <div class="form-field">
     <input [control]="userForm.lastName" type="text" placeholder="Enter your second name" class="form-input" />
+    <!-- В сигнале errors - содержатся все ошибки, которые доступны для данного контрола на текущий момент -->
+    @for (error of userForm.lastName().errors(); track error) {
+    <small class="form-error">{{ error.message }}</small>
+    }
   </div>
 
   <div class="form-field">
     <input [control]="userForm.email" type="email" placeholder="Enter your email" class="form-input" />
+    <!-- В сигнале errors - содержатся все ошибки, которые доступны для данного контрола на текущий момент -->
+    @for (error of userForm.email().errors(); track error) {
+    <small class="form-error">{{ error.message }}</small>
+    }
   </div>
 
   <label for="notify" class="form-notify">Notify by email:

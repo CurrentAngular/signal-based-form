@@ -25,14 +25,14 @@ export class App {
   // ---
   // в терминологии signal form - валидация это -> field logic
   protected readonly userForm = form(this.user, (form) => {
-    required(form.firstName);
-    minLength(form.firstName, 2);
+    required(form.firstName, { message: 'This field is required!' }); // задаем в объекте свое кастомное сообщение ошибки
+    minLength(form.firstName, 2, { message: 'This field must have 2 symbols length' }); // задаем в объекте свое кастомное сообщение ошибки
 
-    required(form.lastName);
-    minLength(form.lastName, 3);
+    required(form.lastName, { message: 'This field is required!' }); // задаем в объекте свое кастомное сообщение ошибки
+    minLength(form.lastName, 3, { message: 'This field must have 3 symbols length' }); // задаем в объекте свое кастомное сообщение ошибки
 
-    required(form.email);
-    email(form.email);
+    required(form.email, { message: 'This field is required!' }); // задаем в объекте свое кастомное сообщение ошибки
+    email(form.email, { message: 'This field must be email pattern' }); // задаем в объекте свое кастомное сообщение ошибки
   });
 
   onSubmit(event: Event): void {
