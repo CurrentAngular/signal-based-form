@@ -1,29 +1,19 @@
 <h3 class="title">signal based form</h3>
-<form (submit)="onSubmit($event)" class="form">
+<form class="form">
   <div class="form-field">
-    <input [control]="form.firstName" type="text" placeholder="Enter your first name" class="form-input" />
-    @for (error of form.firstName().errors(); track $index) {
-    <small class="form-error">{{ error.message }}</small>
-    }
+    <input type="text" placeholder="Enter your first name" class="form-input" />
   </div>
 
   <div class="form-field">
-    <input [control]="form.lastName" type="text" placeholder="Enter your second name" class="form-input" />
-    @for (error of form.lastName().errors(); track $index) {
-    <small class="form-error">{{ error.message }}</small>
-    }
+    <input type="text" placeholder="Enter your second name" class="form-input" />
   </div>
 
   <div class="form-field">
-    <input [control]="form.email" type="email" placeholder="Enter your email" class="form-input" />
-    @for (error of form.email().errors(); track $index) {
-    <small class="form-error">{{ error.message }}</small>
-    }
+    <input type="email" placeholder="Enter your email" class="form-input" />
   </div>
 
   <label for="notify" class="form-notify">Notify by email:
-    <input [control]="form.notify" id="notify" type="checkbox" />
   </label>
 
-  <button [disabled]="form().invalid()" type="submit" class="form-button">save</button>
+  <button type="submit" class="form-button">save</button>
 </form>
