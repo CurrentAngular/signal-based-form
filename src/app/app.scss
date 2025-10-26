@@ -54,5 +54,10 @@
     background-color: tomato;
     color: white;
     font-weight: 700;
+
+    &:disabled {
+      background-color: thistle;
+      cursor: not-allowed;
+    }
   }
 }

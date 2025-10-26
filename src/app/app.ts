@@ -1,6 +1,17 @@
 import { Component, signal } from '@angular/core';
 import { User } from './user.interface';
-import { apply, Control, email, form, minLength, required, schema } from '@angular/forms/signals';
+import {
+  apply,
+  Control,
+  email,
+  form,
+  minLength,
+  required,
+  schema,
+  submit,
+} from '@angular/forms/signals';
+
+const baseUrl = 'https://dummyjson.com/users/3';
 
 // При помощи функции schema - созадем схему, функцию, которая хранит в себе логику валидации контрола
 // преимущество такой схемы - вынесение логики валидации в отдельный скоуп и возможность переиспользования такой функции
@@ -48,6 +59,31 @@ export class App {
   });
 
   onSubmit(event: Event): void {
+    // submit - новая функция для обработки процесса отправки
+    submit(this.userForm, async (form) => {
+      try {
+        await fetch(baseUrl, {
+          method: 'PUT',
+          body: JSON.stringify(form().value()),
+        });
+
+        // Resets the touched and dirty state of the field and its descendants
+        // Note this does not change the data model, which can be - reset directly if desired
+        form().reset();
+
+        return undefined; // undefined или void - если прошло хорошо
+      } catch (e) {
+        // возвращаем Error - или ту, которая пришла с бека или создаем свою
+        return [
+          {
+            kind: 'server crash again', // -> тип ошибки задаем сами?
+            field: form.email, // -> можно привязать ошибку к конкретному полю формы
+            message: 'Бек снова упал',
+          },
+        ];
+      }
+    });
+
     event.preventDefault();
   }
 

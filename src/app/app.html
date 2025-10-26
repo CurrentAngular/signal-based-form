@@ -28,5 +28,6 @@
     <input [control]="userForm.notify" type="checkbox" name="notify" id="notify" />
   </label>
 
-  <button [disabled]="userForm().invalid()" type="submit" class="form-button">save</button>
+  <!-- Сигнал submitting - хранит значение - отправка идет или уже закончмлась -->
+  <button [disabled]="userForm().submitting() || userForm().invalid()" type="submit" class="form-button">save</button>
 </form>
