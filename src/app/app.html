@@ -12,8 +12,9 @@
     <input [control]="userForm.email" type="email" placeholder="Enter your email" class="form-input" />
   </div>
 
-  <label [control]="userForm.notify" for="notify" class="form-notify">Notify by email:
+  <label for="notify" class="form-notify">Notify by email:
+    <input [control]="userForm.notify" type="checkbox" name="notify" id="notify" />
   </label>
 
-  <button type="submit" class="form-button">save</button>
+  <button [disabled]="userForm().invalid()" type="submit" class="form-button">save</button>
 </form>

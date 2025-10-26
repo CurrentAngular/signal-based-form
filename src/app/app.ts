@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { User } from './user.interface';
-import { Control, form } from '@angular/forms/signals';
+import { Control, email, form, minLength, required } from '@angular/forms/signals';
 
 @Component({
   selector: 'sbf-root',
@@ -18,7 +18,22 @@ export class App {
   });
 
   // Используем функцию form для создания формы на основе модели
-  protected readonly userForm = form(this.user);
+  // Первый аргумент этой функции - сигнальная модель
+  // Второй аргумент - функция для валидации контролов формы; эта функция как аргумент принимает форму
+  // и для каждого типа валидации - вызывает вспомогательную функцию
+  // например - required или minLength или email - в которую передает нужный контрол формы
+  // ---
+  // в терминологии signal form - валидация это -> field logic
+  protected readonly userForm = form(this.user, (form) => {
+    required(form.firstName);
+    minLength(form.firstName, 2);
+
+    required(form.lastName);
+    minLength(form.lastName, 3);
+
+    required(form.email);
+    email(form.email);
+  });
 
   onSubmit(event: Event): void {
     event.preventDefault();
